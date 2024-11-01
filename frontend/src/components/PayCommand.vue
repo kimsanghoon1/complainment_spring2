@@ -6,8 +6,8 @@
 
         <v-card-text>
             <Number label="Id" v-model="value.id" :editMode="editMode"/>
-            <String label="접수번호" v-model="value.접수번호" :editMode="editMode"/>
-            <Number label="수수료" v-model="value.수수료" :editMode="editMode"/>
+            <String label="ApplicationNumber" v-model="value.applicationNumber" :editMode="editMode"/>
+            <Number label="Charge" v-model="value.charge" :editMode="editMode"/>
         </v-card-text>
 
         <v-card-actions>
@@ -44,8 +44,8 @@
         }),
         created() {
             this.value.id = 0;
-            this.value.접수번호 = '';
-            this.value.수수료 = 0;
+            this.value.applicationNumber = '';
+            this.value.charge = 0;
         },
         watch: {
         },

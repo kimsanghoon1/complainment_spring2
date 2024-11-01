@@ -47,8 +47,8 @@
 
                         <v-list-item-subtitle style="font-size:25px; font-weight:700;">
                             [ Id :  {{data.id }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ 접수번호 :  {{data.접수번호 }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            [ 수수료 :  {{data.수수료 }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ ApplicationNumber :  {{data.applicationNumber }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [ Charge :  {{data.charge }} ] &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
@@ -116,8 +116,8 @@
             this.values = temp.data._embedded.fees;
             
             this.newValue = {
-                '접수번호': '',
-                '수수료': 0,
+                'applicationNumber': '',
+                'charge': 0,
             }
         },
         methods: {

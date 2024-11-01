@@ -7,6 +7,6 @@ import lombok.Data;
 public class Fee {
 
     private Long id;
-    private String 접수번호;
-    private Long 수수료;
+    private String applicationNumber;
+    private Long charge;
 }

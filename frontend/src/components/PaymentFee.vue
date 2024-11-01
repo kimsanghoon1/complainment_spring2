@@ -16,8 +16,8 @@
         </v-card-title >        
 
         <v-card-text style="background-color: white;">
-            <String label="접수번호" v-model="value.접수번호" :editMode="editMode" :inputUI="''"/>
-            <Number label="수수료" v-model="value.수수료" :editMode="editMode" :inputUI="''"/>
+            <String label="접수번호" v-model="value.applicationNumber" :editMode="editMode" :inputUI="''"/>
+            <Number label="수수료" v-model="value.charge" :editMode="editMode" :inputUI="''"/>
         </v-card-text>
 
         <v-card-actions style="background-color: white;">

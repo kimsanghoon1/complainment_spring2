@@ -104,8 +104,8 @@
             me.values = temp.data._embedded.fees;
             
             me.newValue = {
-                '접수번호': '',
-                '수수료': 0,
+                'applicationNumber': '',
+                'charge': 0,
             }
         },
         methods:{

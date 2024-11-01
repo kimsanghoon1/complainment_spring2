@@ -6,10 +6,10 @@
 
         <v-card-text>
             <div>
-                <String label="접수번호" v-model="item.접수번호" :editMode="editMode" @change="change" />
+                <String label="ApplicationNumber" v-model="item.applicationNumber" :editMode="editMode" @change="change" />
             </div>
             <div>
-                <Number label="수수료" v-model="item.수수료" :editMode="editMode" @change="change" />
+                <Number label="Charge" v-model="item.charge" :editMode="editMode" @change="change" />
             </div>
         </v-card-text>
 
