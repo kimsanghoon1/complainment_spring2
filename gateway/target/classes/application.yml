@@ -1,0 +1,84 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+#<<< API Gateway / Routes
+      routes:
+        - id: receipt
+          uri: http://localhost:8082
+          predicates:
+            - Path=/complainments/**, 
+        - id: payment
+          uri: http://localhost:8083
+          predicates:
+            - Path=/fees/**, 
+        - id: user
+          uri: http://localhost:8084
+          predicates:
+            - Path=/users/**, 
+        - id: complaint
+          uri: http://localhost:8085
+          predicates:
+            - Path=/complaints/**, 
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+#>>> API Gateway / Routes
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: receipt
+          uri: http://receipt:8080
+          predicates:
+            - Path=/complainments/**, 
+        - id: payment
+          uri: http://payment:8080
+          predicates:
+            - Path=/fees/**, 
+        - id: user
+          uri: http://user:8080
+          predicates:
+            - Path=/users/**, 
+        - id: complaint
+          uri: http://complaint:8080
+          predicates:
+            - Path=/complaints/**, 
+        - id: frontend
+          uri: http://frontend:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080
