@@ -58,7 +58,7 @@
         </v-card-actions>
         <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn
+            <v-btn  
                 v-if="!editMode"
                 color="primary"
                 text
@@ -108,10 +108,14 @@
                 status: false,
                 timeout: 5000,
                 text: '',
+                userRole: ''
             },
             payDiagram: false,
         }),
 	async created() {
+            var me = this
+
+            me.userRole = me.$OAuth.tokenParsed.realm_access.roles;
         },
         methods: {
             decode(value) {

@@ -19,12 +19,19 @@ export default {
         components: [],
         sideBar: true,
         urlPath: null,
+        username: '',
     }),
     
     async created() {
       var path = document.location.href.split("#/")
       this.urlPath = path[1];
 
+      var me = this
+      me.username = me.$OAuth.idTokenParsed.preferred_username
+
+      if(!me.username){
+          location.reload()
+      }
     },
 
     mounted() {
@@ -42,6 +49,15 @@ export default {
         },
         goHome() {
             this.urlPath = null;
+        },
+        logout(){
+            //const keycloak = new Keycloak();
+
+            //keycloak.logout;
+            if(confirm("로그아웃 하시겠습니까?")){
+                localStorage.clear()
+                location.href = 'http://localhost:9090/realms/master/protocol/openid-connect/logout'
+            }
         },
     }
 };

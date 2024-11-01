@@ -1,38 +1,17 @@
-server:
-  port: 8080
-#<<< Resilency / Circuit Breaker
-feign:
-  hystrix:
-    enabled: true
-  client:
-    config:
-      default:
-        connectTimeout: 3000  # 연결 timeout
-        readTimeout: 610      # 응답 대기 timeout
-        retryer:
-          period: 2000        # 재시도 주기 
-          maxPeriod: 5000     # 최대 재시도 주기 
-          maxAttempts: 2      # 최대 재시도 횟수 
-hystrix:
-  command:
-    # 전역설정
-    default:
-      execution.isolation.thread.timeoutInMilliseconds: 610 # 읽기 타임아웃 (밀리초 단위)
-#>>> Resilency / Circuit Breaker
-
 spring:
-  application:
-    name: payment
----
-
-spring:
-  profiles: default
+  config:
+    activate:
+      on-profile: default
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9090/realms/master/protocol/openid-connect/certs
   jpa:
     properties:
       hibernate:
         show_sql: true
         format_sql: true
-        implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
   cloud:
     stream:
       kafka:
@@ -65,9 +44,9 @@ logging:
     org.springframework.cloud: debug
 
 api:
-  url: 
-    payment: localhost:8083 
-    
+  url:
+    payment: localhost:8083
+
 
 server:
   port: 8083
@@ -75,13 +54,19 @@ server:
 ---
 
 spring:
-  profiles: docker
+  config:
+    activate:
+      on-profile: docker
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9090/realms/master/protocol/openid-connect/certs
   jpa:
     properties:
       hibernate:
         show_sql: true
         format_sql: true
-        implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
   cloud:
     stream:
       kafka:
@@ -105,7 +90,7 @@ spring:
           contentType: application/json
 
 api:
-  url: 
-    payment: payment:8080 
-    
+  url:
+    payment:8080
+
 
