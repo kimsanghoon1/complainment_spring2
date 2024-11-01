@@ -1,27 +1,38 @@
 package complainment.infra;
 
-import complainment.domain.*;
-import java.util.Optional;
+import complainment.domain.Fee;
+import complainment.domain.FeeRepository;
+import complainment.domain.PayCommand;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-//<<< Clean Arch / Inbound Adaptor
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
-// @RequestMapping(value="/fees")
-@Transactional
 public class FeeController {
 
     @Autowired
     FeeRepository feeRepository;
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     @RequestMapping(
-        value = "/fees/{id}/pay",
+        value = "fees/{id}/pay",
         method = RequestMethod.PUT,
         produces = "application/json;charset=UTF-8"
     )
@@ -42,4 +53,3 @@ public class FeeController {
         return fee;
     }
 }
-//>>> Clean Arch / Inbound Adaptor
