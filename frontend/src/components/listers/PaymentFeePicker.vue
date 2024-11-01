@@ -15,10 +15,10 @@
                             <v-list-item-title>
                             </v-list-item-title>
                             <v-list-item-subtitle>
-                                접수번호 :  {{item.접수번호 }}
+                                ApplicationNumber :  {{item.applicationNumber }}
                             </v-list-item-subtitle>
                             <v-list-item-subtitle>
-                                수수료 :  {{item.수수료 }}
+                                Charge :  {{item.charge }}
                             </v-list-item-subtitle>
                         </v-list-item-content>
 

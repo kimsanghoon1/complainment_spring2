@@ -39,7 +39,7 @@ mvn spring-boot:run
 ```
 - payment
 ```
- http :8088/fees id="id" 접수번호="접수번호" 수수료="수수료" 
+ http :8088/fees id="id" applicationNumber="applicationNumber" charge="charge" 
 ```
 - user
 ```

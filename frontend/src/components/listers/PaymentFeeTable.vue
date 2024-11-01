@@ -67,8 +67,8 @@
             headers: 
                 [
                     { text: "id", value: "id" },
-                    { text: "접수번호", value: "접수번호" },
-                    { text: "수수료", value: "수수료" },
+                    { text: "applicationNumber", value: "applicationNumber" },
+                    { text: "charge", value: "charge" },
                 ],
             fee : [],
             newValue: {},
@@ -86,8 +86,8 @@
             this.values = temp.data._embedded.fees;
 
             this.newValue = {
-                '접수번호': '',
-                '수수료': 0,
+                'applicationNumber': '',
+                'charge': 0,
             }
         },
         methods: {
