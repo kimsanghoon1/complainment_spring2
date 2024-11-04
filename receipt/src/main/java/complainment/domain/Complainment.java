@@ -15,7 +15,7 @@ import lombok.Data;
 public class Complainment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String complainId;
@@ -31,10 +31,13 @@ public class Complainment {
         // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
         complainment.external.PayCommand payCommand = new complainment.external.PayCommand();
+        payCommand.setCharge(500L);
+        payCommand.setUserId(userId);
+        payCommand.setId(id);
         // mappings goes here
         ReceiptApplication.applicationContext
             .getBean(complainment.external.FeeService.class)
-            .pay(/* get???(), */payCommand);
+            .pay(id, payCommand);
 
         ComplaintReceived complaintReceived = new ComplaintReceived(this);
         complaintReceived.publishAfterCommit();

@@ -30,10 +30,7 @@ public class ComplainmentController {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${api.url.fee}")
-    private String apiUrl;
-
-    @Value("${api.url.fee}")
+    @Value("${api.url.payment}")
     private String apiUrl;
 
     @GetMapping("/complainment/validateFee/{id}")

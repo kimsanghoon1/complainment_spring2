@@ -43,7 +43,7 @@ import complainment.domain.*;
 public class ApplyTest {
 
    private static final Logger LOGGER = LoggerFactory.getLogger(ApplyTest.class);
-   
+
    @Autowired
    private KafkaProcessor processor;
    @Autowired
@@ -64,46 +64,38 @@ public class ApplyTest {
    @SuppressWarnings("unchecked")
    public void test0() {
 
-      //given:  
+      // given:
       Complainment existingEntity = new Complainment();
 
       existingEntity.setId("1");
-      existingEntity.set("1");
+      // existingEntity.set("1");
       existingEntity.setID("user1");
-      existingEntity.set(new Object[]{[object Object]});
+      // existingEntity.set(new Object[]{[object Object]});
 
       repository.save(existingEntity);
 
-      //when:  
+      // when:
 
-  
-      
       try {
 
-
-      Complainment newEntity = new Complainment();
+         Complainment newEntity = new Complainment();
 
          newEntity.setNA("a");
 
-      repository.save(newEntity);
-
-
-   
-           
+         repository.save(newEntity);
 
          this.messageVerifier.send(MessageBuilder
-                .withPayload(newEntity)
-                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
-                .build(), "complainment");
+               .withPayload(newEntity)
+               .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
+               .build(), "complainment");
 
          Message<?> receivedMessage = this.messageVerifier.receive("complainment", 5000, TimeUnit.MILLISECONDS);
          assertNotNull("Resulted event must be published", receivedMessage);
 
-      //then:
+         // then:
          String receivedPayload = (String) receivedMessage.getPayload();
 
          ComplaintReceived outputEvent = objectMapper.readValue(receivedPayload, ComplaintReceived.class);
-
 
          LOGGER.info("Response received: {}", outputEvent);
 
@@ -112,13 +104,11 @@ public class ApplyTest {
          assertEquals(outputEvent.getID(), "N/A");
          assertEquals(outputEvent.get(), "N/A");
 
-
       } catch (JsonProcessingException e) {
          e.printStackTrace();
          assertTrue(e.getMessage(), false);
       }
 
-     
    }
 
 }

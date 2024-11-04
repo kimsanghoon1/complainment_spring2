@@ -1,6 +1,7 @@
 package complainment.domain;
 
 import complainment.domain.결재완료됨;
+import complainment.external.User;
 import complainment.PaymentApplication;
 import javax.persistence.*;
 import java.util.List;
@@ -19,21 +20,10 @@ public class Fee  {
 
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    
-    
-    
-    
     private Long id;
-    
-    
-    
-    
+    private String userId;
     private String applicationNumber;
-    
-    
-    
-    
+    private String residentNumber;
     private Long charge;
 
     @PostPersist
@@ -59,9 +49,14 @@ public class Fee  {
         //implement business logic here:
         
 
-        User user = FeeApplication.applicationContext
+        User user = PaymentApplication.applicationContext
             .getBean(complainment.external.UserService.class)
-            .getInfo(get??);
+            .getInfo(payCommand.getUserId());
+
+        setId(payCommand.getId());
+        setUserId(payCommand.getUserId());
+        setResidentNumber(user.getResidentNumber());
+        setCharge(500L);
 
     }
 //>>> Clean Arch / Port Method

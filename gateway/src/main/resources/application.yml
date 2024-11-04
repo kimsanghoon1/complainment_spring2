@@ -1,11 +1,12 @@
-server:
+
+server:
   port: 8088
 
 ---
 
 
 keycloak-client:
-  server-url: http://localhost:9090
+  server-url: https://ominous-zebra-69p9gj7x4v9f5q5q-9090.app.github.dev
   realm: master
 
 spring:
@@ -28,7 +29,7 @@ spring:
         - id: user
           uri: http://localhost:8084
           predicates:
-            - Path=/users/**,  /getInfos/**
+            - Path=/users/**, /getInfos/**
         - id: complaint
           uri: http://localhost:8085
           predicates:
@@ -56,9 +57,9 @@ spring:
             user-name-attribute: preferred_username
         registration:
           keycloak:
-            client-id: "<client-id>"
-            client-secret: 
-            redirect-uri: "gateway-path/login/oauth2/code/client-name"
+            client-id: msa
+            client-secret: FcFobyqYpf8PJX0p7ki5MiCZNqXT5uZq
+            redirect-uri: https://ominous-zebra-69p9gj7x4v9f5q5q-8088.app.github.dev/login/oauth2/code/msa
             authorization-grant-type: authorization_code
             scope: openid
       resourceserver:

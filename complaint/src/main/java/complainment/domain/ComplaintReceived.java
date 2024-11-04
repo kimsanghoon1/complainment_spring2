@@ -12,5 +12,5 @@ public class ComplaintReceived extends AbstractEvent {
     private Long id;
     private String complainId;
     private String userId;
-    private Object complainDetail;
+    private ComplainmentDetail complainDetail;
 }

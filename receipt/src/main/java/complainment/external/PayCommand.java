@@ -13,4 +13,5 @@ public class PayCommand {
 
     private String applicationNumber;
     private Long charge;
+    private String userId;
 }

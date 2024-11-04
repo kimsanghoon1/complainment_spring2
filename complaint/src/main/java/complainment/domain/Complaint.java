@@ -14,10 +14,10 @@ import lombok.Data;
 public class Complaint {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long complainId;
+    private String complainId;
 
     private String result;
+    private ComplainmentDetail detail;
 
     @PostPersist
     public void onPostPersist() {}
@@ -31,11 +31,14 @@ public class Complaint {
 
     //<<< Clean Arch / Port Method
     public static void applyComplain(ComplaintReceived complaintReceived) {
+        Complaint complaint = new Complaint();
+        complaint.setComplainId(complaintReceived.getComplainId());
+        complaint.setDetail(complaintReceived.getComplainDetail());
+        repository().save(complaint);
         //implement business logic here:
 
         /** Example 1:  new item 
-        Complaint complaint = new Complaint();
-        repository().save(complaint);
+        
 
         */
 

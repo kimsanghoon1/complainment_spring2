@@ -11,6 +11,7 @@
             <div>
                 <String label="Result" v-model="item.result" :editMode="editMode" @change="change" />
             </div>
+            <!-- <ComplainmentDetail offline label="ComplainDetail" v-model="item.detail" :editMode="false" :key="false" @change="change" /> -->
         </v-card-text>
 
         <v-card-actions>

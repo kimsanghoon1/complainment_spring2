@@ -51,7 +51,7 @@
                         color="primary"
                         style="font-weight:700;"
                     >
-                        민원신청
+                        민원 접수
                     </v-list-item>
 
 
@@ -87,7 +87,7 @@
                         color="primary"
                         style="font-weight:700;"
                     >
-                        민원
+                        민원 처리
                     </v-list-item>
 
 
@@ -170,7 +170,7 @@ export default {
         ImageUrl: '',
         aggregate: [
             { 
-                title: '민원신청', 
+                title: '민원 접수', 
                 description: '', 
                 key: 'complainments', 
                 route: '/receipts/complainments',
@@ -191,7 +191,7 @@ export default {
                 ImageUrl: '',
             },
             { 
-                title: '민원', 
+                title: '민원 처리', 
                 description: '', 
                 key: 'complaints', 
                 route: '/complaints/complaints',

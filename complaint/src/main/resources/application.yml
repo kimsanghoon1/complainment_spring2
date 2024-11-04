@@ -28,14 +28,10 @@ spring:
       bindings:
         event-in:
           group: complaint
-#<<< EDA / Topic Name
           destination: complainment
-#>>> EDA / Topic Name
           contentType: application/json
         event-out:
-#<<< EDA / Topic Name
           destination: complainment
-#>>> EDA / Topic Name
           contentType: application/json
 
 logging:

@@ -18,6 +18,7 @@
         <v-card-text style="background-color: white;">
             <Number v-if="editMode" label="민원사무번호" v-model="value.complainId" :editMode="editMode" :inputUI="''"/>
             <String label="결과" v-model="value.result" :editMode="editMode" :inputUI="''"/>
+            <ComplainmentDetail offline label="ComplainDetail" v-model="value.detail" :editMode="false" :key="false" @change="change" />
         </v-card-text>
 
         <v-card-actions style="background-color: white;">

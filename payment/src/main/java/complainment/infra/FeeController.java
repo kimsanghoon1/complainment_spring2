@@ -3,6 +3,9 @@ package complainment.infra;
 import complainment.domain.Fee;
 import complainment.domain.FeeRepository;
 import complainment.domain.PayCommand;
+
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
@@ -43,11 +46,10 @@ public class FeeController {
         HttpServletResponse response
     ) throws Exception {
         System.out.println("##### /fee/pay  called #####");
-        Optional<Fee> optionalFee = feeRepository.findById(id);
-
-        optionalFee.orElseThrow(() -> new Exception("No Entity Found"));
-        Fee fee = optionalFee.get();
+        Fee fee = new Fee();
+        fee.setId(id);
         fee.pay(payCommand);
+        // Optional<Fee> optionalFee = feeRepository.findById(id);
 
         feeRepository.save(fee);
         return fee;

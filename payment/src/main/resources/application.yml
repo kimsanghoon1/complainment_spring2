@@ -46,6 +46,7 @@ logging:
 api:
   url:
     payment: localhost:8083
+    user: localhost:8084
 
 
 server:
