@@ -26,6 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import complainment.config.kafka.KafkaProcessor;
 import complainment.domain.Complaint;
+import complainment.domain.ComplainmentDetail;
 import complainment.domain.ComplaintReceived;
 import complainment.domain.ComplaintRepository;
 
@@ -54,7 +55,7 @@ public class ApplyComplainTest {
         // given:
         Complaint entity = new Complaint();
 
-        entity.setComplainId(1L);
+        entity.setComplainId("1");
         entity.setResult("N/A");
 
         repository.save(entity);
@@ -66,7 +67,9 @@ public class ApplyComplainTest {
         event.setId(1L);
         event.setComplainId("N/A");
         event.setUserId("N/A");
-        event.setComplainDetail("N/A");
+        ComplainmentDetail complainDetail = new ComplainmentDetail();
+        complainDetail.setDescription("test");
+        event.setComplainDetail(complainDetail);
 
         ComplaintApplication.applicationContext = applicationContext;
 
@@ -90,8 +93,9 @@ public class ApplyComplainTest {
             // then:
             Message<String> received = (Message<String>) messageCollector
             .forChannel(processor.outboundTopic())
-            .poll(5, TimeUnit.SECONDS);
-            
+            .poll(3, TimeUnit.SECONDS);
+            Thread.sleep(6000);
+
             assertNotNull("Resulted event must be published", received);
 
             LOGGER.info("Response received: {}", received.getPayload());

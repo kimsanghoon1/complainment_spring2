@@ -59,6 +59,7 @@ public class Fee  {
         setCharge(500L);
 
     }
+
 //>>> Clean Arch / Port Method
 
 

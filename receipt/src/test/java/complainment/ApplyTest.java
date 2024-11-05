@@ -67,10 +67,12 @@ public class ApplyTest {
       // given:
       Complainment existingEntity = new Complainment();
 
-      existingEntity.setId("1");
-      // existingEntity.set("1");
-      existingEntity.setID("user1");
-      // existingEntity.set(new Object[]{[object Object]});
+      existingEntity.setId(1L);
+      existingEntity.setUserId("user1");
+      existingEntity.setComplainId("11");
+      ComplainmentDetail cd = new ComplainmentDetail();
+      cd.setDescription("desc");
+      existingEntity.setComplainDetail(cd);
 
       repository.save(existingEntity);
 
@@ -80,7 +82,10 @@ public class ApplyTest {
 
          Complainment newEntity = new Complainment();
 
-         newEntity.setNA("a");
+         existingEntity.setId(2L);
+         existingEntity.setUserId("user2");
+         existingEntity.setComplainId("22");
+         existingEntity.setComplainDetail(cd);
 
          repository.save(newEntity);
 

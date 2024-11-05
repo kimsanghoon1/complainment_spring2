@@ -1,8 +1,5 @@
 package com.example.template;
 
-import complainment.GetInfoApplication;
-import complainment.infra.GetInfoController;
-import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,22 +11,26 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.test.web.servlet.setup.StandaloneMockMvcBuilder;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
+import complainment.UserApplication;
+import complainment.infra.UserController;
+import io.restassured.module.mockmvc.RestAssuredMockMvc;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(
     webEnvironment = SpringBootTest.WebEnvironment.MOCK,
-    classes = GetInfoApplication.class
+    classes = UserApplication.class
 )
 @AutoConfigureMockMvc
 @Import(TestDataConfig.class)
 public class RestBase {
 
     @Autowired
-    private GetInfoController getInfoController;
+    private UserController userController;
 
     @Before
     public void setup() {
         StandaloneMockMvcBuilder standaloneMockMvcBuilder = MockMvcBuilders
-            .standaloneSetup(getInfoController)
+            .standaloneSetup(userController)
             .addFilters(new CharacterEncodingFilter("UTF-8", true));
 
         RestAssuredMockMvc.standaloneSetup(standaloneMockMvcBuilder);

@@ -25,5 +25,15 @@ public class User {
         );
         return userRepository;
     }
+
+    @PostLoad
+    public void makeDelay(){
+        try {
+            Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+   
+    }
 }
 //>>> DDD / Aggregate Root

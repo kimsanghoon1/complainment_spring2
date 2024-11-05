@@ -2,12 +2,14 @@
 server:
   port: 8088
 
----
-
+# keycloak-client:
+#   server-url: https://ominous-zebra-69p9gj7x4v9f5q5q-9090.app.github.dev
+#   realm: master
 
 keycloak-client:
-  server-url: https://ominous-zebra-69p9gj7x4v9f5q5q-9090.app.github.dev
+  server-url: http://192.168.240.23:31234
   realm: master
+---
 
 spring:
   config:
@@ -74,6 +76,8 @@ spring:
       on-profile: docker
   cloud:
     gateway:
+      default-filters:
+        - TokenRelay 
       routes:
         - id: receipt
           uri: http://receipt:8080
@@ -86,16 +90,20 @@ spring:
         - id: user
           uri: http://user:8080
           predicates:
-            - Path=/users/** /getInfos/**
+            - Path=/users/**, /getInfos/**
         - id: complaint
           uri: http://complaint:8080
           predicates:
             - Path=/complaints/** 
+        - id: front
+          uri: http://front:8080
+          predicates:
+            - Path=/**
       globalcors:
         corsConfigurations:
           '[/**]':
             allowedOrigins:
-              - "*"
+              - http://180.210.76.90, http://192.168.240.23
             allowedMethods:
               - "*"
             allowedHeaders:
@@ -110,9 +118,9 @@ spring:
             user-name-attribute: preferred_username
         registration:
           keycloak:
-            client-id: "<client-id>"
-            client-secret: 
-            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+            client-id: uengine
+            client-secret: kciiFUHlMwDguM2CO32cfpaW9Hdayc0l
+            redirect-uri: http://180.210.76.90:8080/login/oauth2/code/keycloak
             authorization-grant-type: authorization_code
             scope: openid
       resourceserver:

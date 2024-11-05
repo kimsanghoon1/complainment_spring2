@@ -98,7 +98,7 @@ spec:
     spec:
       containers:
         - name: user
-          image: username/user:latest
+          image: ghcr.io/kimsanghoon1/complainment_spring2/user:v0.1
           ports:
             - containerPort: 8080
           readinessProbe:
