@@ -1,6 +1,6 @@
 package com.example.template;
 
-import complainment.ComplainmentApplication;
+import complainment.ReceiptApplication;
 import complainment.infra.ComplainmentController;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Before;
@@ -17,7 +17,7 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 @RunWith(SpringRunner.class)
 @SpringBootTest(
     webEnvironment = SpringBootTest.WebEnvironment.MOCK,
-    classes = ComplainmentApplication.class
+    classes = ReceiptApplication.class
 )
 @AutoConfigureMockMvc
 @Import(TestDataConfig.class)

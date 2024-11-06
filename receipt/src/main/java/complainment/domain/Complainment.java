@@ -35,9 +35,9 @@ public class Complainment {
         payCommand.setUserId(userId);
         payCommand.setId(id);
         // mappings goes here
-        ReceiptApplication.applicationContext
-            .getBean(complainment.external.FeeService.class)
-            .pay(id, payCommand);
+        // ReceiptApplication.applicationContext
+        //     .getBean(complainment.external.FeeService.class)
+        //     .pay(id, payCommand);
 
         ComplaintReceived complaintReceived = new ComplaintReceived(this);
         complaintReceived.publishAfterCommit();

@@ -1,6 +1,6 @@
 package complainment.domain;
 
-import complainment.domain.결재완료됨;
+import complainment.domain.PaymentCompleted;
 import complainment.external.User;
 import complainment.PaymentApplication;
 import javax.persistence.*;
@@ -9,16 +9,13 @@ import lombok.Data;
 import java.util.Date;
 import java.time.LocalDate;
 
-
 @Entity
-@Table(name="Fee_table")
+@Table(name = "Fee_table")
 @Data
 
-//<<< DDD / Aggregate Root
-public class Fee  {
+// <<< DDD / Aggregate Root
+public class Fee {
 
-
-    
     @Id
     private Long id;
     private String userId;
@@ -27,31 +24,26 @@ public class Fee  {
     private Long charge;
 
     @PostPersist
-    public void onPostPersist(){
+    public void onPostPersist() {
 
+        PaymentCompleted paymentCompleted = new PaymentCompleted(this);
+        paymentCompleted.publishAfterCommit();
 
-        결재완료됨 결재완료됨 = new 결재완료됨(this);
-        결재완료됨.publishAfterCommit();
-
-    
     }
 
-    public static FeeRepository repository(){
+    public static FeeRepository repository() {
         FeeRepository feeRepository = PaymentApplication.applicationContext.getBean(FeeRepository.class);
         return feeRepository;
     }
 
+    // <<< Clean Arch / Port Method
+    public void pay(PayCommand payCommand) {
 
-
-//<<< Clean Arch / Port Method
-    public void pay(PayCommand payCommand){
-        
-        //implement business logic here:
-        
+        // implement business logic here:
 
         User user = PaymentApplication.applicationContext
-            .getBean(complainment.external.UserService.class)
-            .getInfo(payCommand.getUserId());
+                .getBean(complainment.external.UserService.class)
+                .getInfo(payCommand.getUserId());
 
         setId(payCommand.getId());
         setUserId(payCommand.getUserId());
@@ -60,9 +52,7 @@ public class Fee  {
 
     }
 
-//>>> Clean Arch / Port Method
-
-
+    // >>> Clean Arch / Port Method
 
 }
-//>>> DDD / Aggregate Root
+// >>> DDD / Aggregate Root

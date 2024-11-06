@@ -1,6 +1,7 @@
 package com.example.template;
 
 import complainment.domain.Complainment;
+import complainment.domain.ComplainmentDetail;
 import complainment.domain.ComplainmentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -14,9 +15,11 @@ public class TestDataConfig {
         return args -> {
             Complainment complainment = new Complainment();
             complainment.setId(1L);
-            complainment.set("1");
-            complainment.setID("user1");
-            complainment.set("[object Object]");
+            complainment.setComplainId("1");
+            complainment.setUserId("user1");
+            ComplainmentDetail complainDetail = new ComplainmentDetail();
+            complainDetail.setDescription("complain");
+            complainment.setComplainDetail(complainDetail);
             repository.save(complainment);
         };
     }

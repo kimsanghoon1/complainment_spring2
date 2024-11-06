@@ -20,7 +20,11 @@ public class Complaint {
     private ComplainmentDetail detail;
 
     @PostPersist
-    public void onPostPersist() {}
+    public void onPostPersist() {
+        ComplaintApproved complaintApproved = new ComplaintApproved();
+        complaintApproved.publishAfterCommit();
+
+    }
 
     public static ComplaintRepository repository() {
         ComplaintRepository complaintRepository = ComplaintApplication.applicationContext.getBean(

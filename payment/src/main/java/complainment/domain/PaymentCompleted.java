@@ -9,17 +9,17 @@ import lombok.*;
 //<<< DDD / Domain Event
 @Data
 @ToString
-public class 결재완료됨 extends AbstractEvent {
+public class PaymentCompleted extends AbstractEvent {
 
     private Long id;
     private String applicationNumber;
     private Long charge;
 
-    public 결재완료됨(Fee aggregate) {
+    public PaymentCompleted(Fee aggregate) {
         super(aggregate);
     }
 
-    public 결재완료됨() {
+    public PaymentCompleted() {
         super();
     }
 }

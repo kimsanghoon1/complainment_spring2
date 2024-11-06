@@ -94,7 +94,6 @@ public class ApplyComplainTest {
             Message<String> received = (Message<String>) messageCollector
             .forChannel(processor.outboundTopic())
             .poll(3, TimeUnit.SECONDS);
-            Thread.sleep(6000);
 
             assertNotNull("Resulted event must be published", received);
 
